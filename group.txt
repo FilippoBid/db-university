@@ -9,8 +9,13 @@ FROM `teachers`
 GROUP BY `office_address`;
 
 3
-
+SELECT `exam_id`, AVG(`vote`)
+FROM `exam_student`
+GROUP BY `exam_id`;
 
 4
+SELECT `department_id`, COUNT(`id`)
+FROM `degrees`
+GROUP BY `department_id`;
 
 5
