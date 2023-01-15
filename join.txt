@@ -36,7 +36,34 @@ INNER JOIN `departments`
 ORDER BY `students`.`name`;
 
 5
-
+SELECT `degrees`.`name`
+	`courses`.`description` AS 'Corso',
+    `course_teacher`.`course_id`
+    `course_teacher`.`teacher_id`
+    `teachers`.`name`
+    `teachers`.`surname`
+FROM `degrees`
+INNER JOIN `courses`
+	ON `courses`.`degree_id` = `degrees`.`id`
+INNER JOIN `course_teacher`
+	ON `course_teacher`.`teacher_id` = `courses`.`id`
+INNER JOIN `teachers`
+	ON `course_teacher`.`teacher_id` = `teachers`.`id`; 
 6
+SELECT `departments`.`name`
+	`teachers`.`name` 
+    `teachers`.`surname` 
+    `course_teacher`.`teacher_id`
+FROM `departments`
+LEFT JOIN `degrees`
+	ON `degrees`.`department_id` = `departments`.`id`
+LEFT JOIN `courses`
+	ON `courses`.`degree_id` = `degrees`.`id`
+LEFT JOIN `course_teacher`
+	ON `course_teacher`.`course_id` = `courses`.`id`
+LEFT JOIN `teachers`
+	ON `course_teacher`.`teacher_id` = `teachers`.`id`
+WHERE `departments`.`name` = 'Dipartimento di Matematica'  
+GROUP BY `departments`.`name`,`teachers`.`name`,`teachers`.`surname`,`course_teacher`.`teacher_id`  
 
 7
